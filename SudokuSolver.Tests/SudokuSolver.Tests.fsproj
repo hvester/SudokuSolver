@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Graph.Tests.fs" />
+    <Compile Include="Sudoku.Tests.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
