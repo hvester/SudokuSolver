@@ -8,8 +8,8 @@ type UndirectedAdjacencyMatrix(nVertices) =
 
     let getArrayIndexAndMask i j =
         let n, m = if i < j then i, j else j, i
-        if n < 0 || m >= nVertices then failwith "Vertex index out of bounds"
-        let logicalIndex = n * (n + 1) / 2 + m
+        if n < 0 || m >= nVertices then failwithf "Vertex index out of bounds: %i, %i" i j
+        let logicalIndex = m * (m + 1) / 2 + n
         let arrayIndex = logicalIndex / 8
         let mask = 1uy <<< (logicalIndex - 8 * arrayIndex)
         arrayIndex, mask
