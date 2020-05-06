@@ -37,7 +37,7 @@ let tests =
             g.AddEdge(3, 0)
             let expectedSolution =
                 [ (0, "blue"); (1, "red"); (2, "blue"); (3, "red") ]
-            match runColoring [| "red"; "blue" |] [ (0, "red")] g with
+            match runColoring [| "red"; "blue" |] [ (0, "blue")] g with
             | Some solution ->
                 Expect.equal solution expectedSolution "Wrong solution"
             | None ->
