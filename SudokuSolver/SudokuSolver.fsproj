@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Graph.fs" />
+    <Compile Include="Sudoku.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 </Project>
