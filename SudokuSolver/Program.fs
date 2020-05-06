@@ -45,5 +45,15 @@ module Main =
 
     [<EntryPoint>]
     let main argv =
-        printfn "Hello World from F#!"
-        0 // return an integer exit code
+        let sudoku = parseSudoku (File.ReadAllText argv.[0])
+        printfn "Solving..."
+        let stopWatch = Stopwatch.StartNew()
+        match solveSudoku sudoku with
+        | None ->
+            printfn "No solution found"
+        | Some solvedSudoku ->
+            stopWatch.Stop()
+            printfn "Solved in %ims" stopWatch.ElapsedMilliseconds 
+            formatSolvedSudoku solvedSudoku
+            |> printfn "%s"
+        0
