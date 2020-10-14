@@ -12,19 +12,17 @@ module Main =
             str.ToCharArray()
             |> Array.choose (fun c ->
                 match Int32.TryParse(string c) with
-                | true, n when n > 0 -> Some (Some n)
-                | _ when c = ' ' -> Some None  
+                | true, n when n > 0 -> Some(Some n)
+                | _ when c = ' ' -> Some None
                 | _ -> None)
-        if squares.Length >= 9 then
-            Some (Array.take 9 squares)
-        else
-            None
+
+        if squares.Length >= 9 then Some(Array.take 9 squares) else None
 
 
     let parseSudoku (str : string) =
         let rows =
-            str.Split("\n")
-            |> Array.choose tryParseRow
+            str.Split("\n") |> Array.choose tryParseRow
+
         if rows.Length = 9 then
             rows
         else
@@ -48,12 +46,12 @@ module Main =
         let sudoku = parseSudoku (File.ReadAllText argv.[0])
         printfn "Solving..."
         let stopWatch = Stopwatch.StartNew()
+
         match solveSudoku sudoku with
-        | None ->
-            printfn "No solution found"
+        | None -> printfn "No solution found"
         | Some solvedSudoku ->
             stopWatch.Stop()
-            printfn "Solved in %ims" stopWatch.ElapsedMilliseconds 
-            formatSolvedSudoku solvedSudoku
-            |> printfn "%s"
+            printfn "Solved in %ims" stopWatch.ElapsedMilliseconds
+            formatSolvedSudoku solvedSudoku |> printfn "%s"
+
         0

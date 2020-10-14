@@ -1,4 +1,5 @@
 ﻿module SudokuSolver.Tests
+
 open Expecto
 
 [<EntryPoint>]
